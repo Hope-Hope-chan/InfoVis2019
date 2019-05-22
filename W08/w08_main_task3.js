@@ -24,11 +24,12 @@ function main()
     var vertices = [
         [ -1,  1, 0 ], // 0
         [ -1, -1, 0 ], // 1
-        [  1, -1, 0 ]  // 2
+        [  1, -1, 0 ],
+	[ 1,1,0]// 2
     ];
 
     var faces = [
-        [ 0, 1, 2 ], // f0
+        [ 0, 1, 2 ,3] // f0
     ];
 
     var scalars = [
@@ -70,6 +71,16 @@ function main()
         geometry.vertices.push( vertex );
     }
 
+
+    var nfaces = faces.length;
+    for ( var i = 0; i < nfaces; i++ )
+    {
+        var id = faces[i];
+        var face = new THREE.Face3( id[0], id[1], id[2] );
+        geometry.faces.push( face );
+    }
+
+    
        // Assign colors for each vertex
     material.vertexColors = THREE.VertexColors;
     for ( var i = 0; i < nfaces; i++ )
@@ -88,13 +99,6 @@ function main()
 
     
 
-    var nfaces = faces.length;
-    for ( var i = 0; i < nfaces; i++ )
-    {
-        var id = faces[i];
-        var face = new THREE.Face3( id[0], id[1], id[2] );
-        geometry.faces.push( face );
-    }
 
 
 
@@ -160,7 +164,7 @@ function main()
       var triangle = new THREE.Mesh( geometry, material );
     scene.add( triangle );
 
-    var triangle2 = new THREE.Mesh( geometry2, material );
+    var triangle2 = new THREE.Mesh( geometry2, material2 );
     scene.add( triangle2 );
 
     loop();
